@@ -1,0 +1,24 @@
+# armstrong.py
+
+def is_armstrong(n: int) -> bool:
+    """Return True if n is an Armstrong (narcissistic) number in base 10."""
+    if n < 0:
+        return False
+    digits = [int(d) for d in str(n)]
+    k = len(digits)
+    return n == sum(pow(d, k) for d in digits)
+
+def armstrong_in_range(a: int, b: int):
+    """List all Armstrong numbers in the inclusive range [a, b]."""
+    if a > b:
+        a, b = b, a
+    a = max(0, a)
+    return [x for x in range(a, b + 1) if is_armstrong(x)]
+
+if __name__ == "__main__":
+    # quick demo
+    n = int(input("Enter a number: ").strip())
+    print("Armstrong" if is_armstrong(n) else "Not Armstrong")
+
+    # Example: find all Armstrong numbers up to 100000
+    print("Up to 100000:", armstrong_in_range(0, 100000))
